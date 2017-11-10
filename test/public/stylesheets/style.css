@@ -1,0 +1,142 @@
+/*body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}*/
+
+/*ttile*/
+.big-title{
+	font-size: 6.5rem;
+}
+.middle-title{
+	font-size:4rem;
+}
+.small-title{
+	font-size:2rem;
+}
+
+/*space*/
+.big-space{
+	height: 10rem;
+	line-height: 10rem;
+}
+.middle-space{
+	height: 6rem;
+	line-height: 6rem;
+}
+.small-space{
+	height: 3rem;
+	line-height: 3rem;
+}
+
+.m-width{
+   width:50%;
+   /*margin:0 auto;*/
+}
+
+/*padding*/
+.s-padding{
+	padding:2rem;
+}
+
+/*center*/
+.text-center{
+	text-align:center; 
+}
+
+/*shadow*/
+.shadow{
+	border-radius: 0.5rem;
+	border:1px solid #cecece;
+	box-shadow:0.1rem 0.2rem 0.3rem #cecece;
+}
+
+/*float*/
+.l-float{
+	float: left;
+}
+.r-float{
+	float: right;
+}
+
+/*login css*/
+.login,.reg{
+	width:60%;
+	margin: 0 auto;
+	background-color: rgba(250,250,250,0.8);
+	border-radius: 0.3rem;
+	padding:2rem;
+}
+
+.login input{
+	width:80%;
+	margin:0 auto;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+.reg input{
+	width:80%;
+	margin:0 auto;
+	height: 4rem;
+	line-height: 4rem;
+}
+
+.login .headline{
+	width:50%;
+	margin: 0 auto;
+}
+.headline p{
+	font-weight: bold;
+	letter-spacing: 0.5rem;
+	text-align: center;
+}
+
+/*button*/
+.button{
+	width:15rem;
+	margin:0 auto;
+	text-align: center;
+}
+
+.s-button{
+	height: 3rem;
+	line-height: 3rem;
+	width:10rem;
+	margin:0 auto;
+	
+}
+
+.s-button input{
+	width: 10rem;
+	height: 3rem;
+	line-height: 3rem;
+	text-align: center;
+	font-size: 1.7rem;
+	letter-spacing: 0.1rem;
+	background-color: rgba(0,0,0,0);
+	border-radius: 0.4rem;
+	border:2px solid #000;/*rgb(58,179,255)*/
+}
+
+.button-login,.button-reg{
+	width:15rem;
+	margin:0 auto;
+	font-size: 1.7rem;
+	letter-spacing: 0.1rem;
+	background-color: rgba(0,0,0,0);
+	border-radius: 0.4rem;
+	border:2px solid #000;/*rgb(58,179,255)*/
+}
+
+/*login css*/
+.register{
+	text-align: center;
+	padding-bottom: 1.5rem;
+} 
+.register a{
+	color:#000;
+}

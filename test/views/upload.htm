@@ -1,0 +1,79 @@
+<% include common/tHeader.htm %>
+	<% if( status  == true ) { %>
+	
+		<div class="modal fade" id="msg-box" >
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">提示</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p id="content"><%= msg %></p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<script type="text/javascript">
+			$("#msg-box").modal('show');
+		</script>
+	<% } %>
+		<div class="container">
+			<h2>课程上传试题</h2>
+
+		    <form action="/upload" method="post" enctype="multipart/form-data" class="upload">
+			     <!-- <div class="form-group">
+		          <label for="exampleInputPassword1">请输入操作码</label>
+		          <input type="password" class="form-control" id="password" name="password" placeholder="教师操作码">
+		        </div> -->
+		        <div class="m-width middle-space s-padding">
+		        	<select class="form-control " id="course" name="course">
+					   <% for(var i = 0; i< courses.length; i++) { %>
+					   		<option value="<%= courses[i]._id %>"><%= courses[i].coursename %></option>
+					   <% } %>
+					</select>
+		        </div>
+			    
+			    <div class="s-padding">
+			    	<input type="file" name="xlsx" onchange="checkFileExt(this.value)" />
+			    	<div style="height: 2rem;line-height: 2rem"></div>
+				    <input type="submit" value="提交" onClick="postData(this);return false;" id ="submit" style="display: none;">			    		
+			    </div>
+				    
+			 </form>
+		</div>	
+	
+	<script type="text/javascript">
+		function checkFileExt(filename){
+			 var flag = false; //状态
+			 var arr = ["xls","xlsx"];
+			 //取出上传文件的扩展名
+			 var index = filename.lastIndexOf(".");
+			 var ext = filename.substr(index+1);
+			 //循环比较
+			 for(var i=0;i<arr.length;i++)
+			 {
+			  if(ext == arr[i])
+			  {
+			   flag = true; //一旦找到合适的，立即退出循环
+			   break;
+			  }
+			 }
+			 //条件判断
+			 if(flag)
+			 {
+			  	$("#submit").show(); 
+			 }else
+			 {
+			  	alert("文件名不合法");
+			 }
+		}
+	</script>
+
+	
+
+
+<% include common/footer.htm %>

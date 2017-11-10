@@ -1,0 +1,32 @@
+<% include common/header.htm %>
+<div class="container">
+	<div class="headline middle-title middle-space"">
+      <p>成绩</p>
+    </div>
+	<% if(course.length == null) { %>
+		<p>你没参加任何考试</p>
+		<a href="/test">前往考试</a>
+	<% }else{  %>
+		<table class="table table-bordered">
+		  <tr>
+		  	<td>考生</td>
+		  	<td>科目</td>
+		  	<td>成绩</td>
+		  </tr>
+		   <% for(var i = 0; i < course.length; i++){ %>
+	  		<tr>
+	  			<td><%= user.name %></td>
+	  			<td><%= course[i] %></td>
+	  			<td><%= result[i] %></td>
+	  			
+	  		</tr>
+	  		<% } %>
+		  	
+		  
+		</table>
+	<% } %>
+
+</div>
+	
+
+<% include common/footer.htm %>i

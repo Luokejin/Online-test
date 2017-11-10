@@ -1,0 +1,63 @@
+<% include common/tHeader.htm %>
+	<div class="container">	
+		<div class="headline middle-title middle-space">
+	      <p>选课</p>
+	    </div>	
+		<form>
+			<div class="m-width middle-space s-padding l-float">
+				<select class="form-control" id="course" name="course">
+					<% for(var i = 0; i< course.length; i++) { %>
+							<option value="<%= course[i]._id %>" onclick="postData(this)"><%= course[i].coursename %></option>
+					<% } %>
+				</select>
+			</div>
+			<div class="m-width l-float s-padding s-button">
+				<input type="button" name="查询" onclick="postData(this)" value="查询">
+			</div>
+		</form>
+			
+			<div class="container" id="result">
+				
+			</div>	
+	</div>
+
+
+
+<script type="text/javascript">
+function postData (_this){
+	$.post('/tResult', {
+		course: $('#course').val()
+	}, function (data){
+		if(data.name.length != 0){
+			$("#resultTable").remove();
+			$("#result").append("<table class='table table-bordered' id='resultTable'><tr><td>考生</td><td>科目</td><td>成绩</td></tr></table>");
+			for(var i = 0 ; i < data.name.length; i++){
+				var name = "name" + i;
+				var course = "course" + i;
+				var result = "result" + i;
+				$("#resultTable").append("<tr><td class='name'></td><td class='course'></td><td class='result'></td></tr>")
+				$(".name").attr("class",name);
+				$(".course").attr("class",course);
+				$(".result").attr("class",result);
+
+				//赋值
+				$("." + name).text(data.name[i]);
+				$("." + course).text(data.course[i]);
+				$("." + result).text(data.result[i]);
+				
+			}
+
+		}else{
+			$("#resultTable").remove();
+			$('#result').append("<p id='resultTable'>没有任何学生参加考试</p>");
+		}
+		// if(data.status){
+		// 	window.location.href = '/';
+		// }
+		
+	});
+}	
+
+</script>
+<% include common/footer.htm %>
+

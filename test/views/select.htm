@@ -1,0 +1,73 @@
+<% include common/header.htm %>
+
+
+<div class="container ">
+<!-- <div class="col-md-8"> -->
+    <div class="headline middle-title big-space">
+      <p>选课</p>
+    </div>
+        <div class="row clearfix s-padding shadow">
+          <form>
+            <% for(var i = 0 ; i < course.length ; i++) { %> 
+              <div class="col-md-4 column text-center">
+                <div class="radio-inline">
+                  <label>
+                    <input type="radio" name="course" class="course" value="<%= course[i]._id %>" ><%= course[i].coursename %>
+                  </label>
+                </div>
+              </div>
+            <% } %>
+           
+           <div class="middle-space"></div>
+           <div class="s-button">
+               <input type="button" name="选课"  onclick="postData(this)" value="选课">
+            </div>
+          </form> 
+         </div>   
+          
+        
+  
+    
+  <div class="modal fade" id="msg-box">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p id="content">One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- </div> -->
+</div> <!-- container -->
+
+<script type="text/javascript">
+
+function postData (_this){
+	
+	$.post('/course', {
+		course: $('input[name=course]:checked').val()
+	}, function (data){
+		console.log(data);
+		$('#content').html(data.msg);
+		$('#msg-box').modal('show');
+		console.log(data);
+		// if(data.status){
+		// 	window.location.href = '/';
+		// }
+		
+	});
+	
+}
+
+</script>
+
+
+<% include common/footer.htm %>

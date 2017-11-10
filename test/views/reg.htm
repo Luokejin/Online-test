@@ -1,0 +1,83 @@
+<% include common/header.htm %>
+<style type="text/css">
+  body{
+    background:url(/images/back.jpg);
+    background-size:100% auto;
+  }
+  .container{
+    margin-top: 5%;
+  }
+</style>
+
+<!--<form method="post">
+	<h2>昵称</h2>
+	<input type="text" placeholder="昵称" value=""><br>
+    <h2>密码</h2>
+    <input type="password" placeholder="密码" value="" ><br>
+    <input type="submit" value="注册">
+</form>-->
+<div class="container ">
+  <form method="post" class="reg" id="reg">
+      <div class="headline">
+          <p class="big-title">佛大考</p>
+          <p class="small-title">学生注册</p>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" name="name" placeholder="请输入名字">
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+      </div>
+      
+      <div class="button">
+         <input type="button" name="登录" class="button-reg" onclick="postData(this)" value="注册">
+      </div>
+  </form>
+
+<div class="modal fade" id="msg-box">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p id="content">One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+<script type="text/javascript">
+
+function postData (_this){
+	
+	$.post('/reg', {
+    username: $('#username').val(),
+		name: $('#name').val(),
+		password: $('#password').val()
+	}, function (data){
+		console.log(data);
+		$('#content').html(data.msg);
+		$('#msg-box').modal('show');
+		
+		if(data.status){
+			window.location.href = '/';
+		}
+		
+	});
+	
+}
+
+</script>
+
+
+<% include common/footer.htm %>

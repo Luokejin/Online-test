@@ -1,0 +1,98 @@
+<% include common/header.htm %>
+
+
+<div class="container ">
+<!-- <div class="col-md-8"> -->
+    <div class="headline middle-title middle-space">
+      <p>考试</p>
+    </div>
+    <form id="question">
+        <blockquote>
+            <!-- 隐藏内容 -->
+            <div class="questionid" style="display: none"><%= question[count]._id %></div>
+            <div class="mark" style="display: none"><%= question[count].mark %></div>
+
+            <span class="count"><%= count + 1 %></span><span>. </span><span class="subject"><%= question[count].subject %></span>
+              <% for(var j = 0 ; j < question[count].option.length; j++){ %>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="answer" class="answer answer<%= j %>" value="<%= question[count].option[j] %>" >
+                        <span id="text<%= j %>"><%= question[count].option[j] %></span>
+                    </label>
+                </div>
+              <% } %>
+        </blockquote>
+
+       <div class="button">
+           <input type="button" name="下一题" class="button-login" onclick="postData(this)" value="下一题">
+        </div>
+    </form>
+        
+     
+  <div id="go" style="display: none;">
+    <p>你已经完成考试</p>
+    <a href="/result">前往查看</a>
+  </div>
+
+  <div class="modal fade" id="msg-box">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p id="content">One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- </div> -->
+</div> <!-- container -->
+
+<script type="text/javascript">
+
+function postData(_this){
+	$.post('/test/<%= question[count].course %>', {
+    question: $('.questionid').text(),
+    answer: $('input[name=answer]:checked').val(),
+    count: $('.count').text(),
+    mark: $('.mark').text()
+  }, function (data){
+    if(data.status){
+      $('#content').html(data.msg);
+      $('#msg-box').modal('show');
+    }
+    else if((data.count+1) > data.question.length){   //data.count + 1 是因为data.count本来就比question.length小1
+      $('#question').hide();
+      $('#go').show();
+    }
+    else{
+      console.log(data.count);
+      $(".answer").attr("checked",false);
+      $('.questionid').text(data.question[data.count]._id);
+      $('.mark').text(data.question[data.count].mark);
+      $('.count').text(data.count+1);
+      $(".subject").text(data.question[data.count].subject);
+      for(var i = 0 ; i < data.question[data.count].option.length; i++){
+        var op = "#" + "options" + i.toString();
+        var text = "#" + "text" + i.toString();
+        $(text).html(data.question[data.count].option[i]);
+        $(op).val(data.question[data.count].option[i]);
+        // $(answer).text();
+        // $(answer).val();
+      }
+    }
+    
+  });
+	
+}
+
+</script>
+
+
+<% include common/footer.htm %>

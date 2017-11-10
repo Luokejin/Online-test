@@ -1,0 +1,35 @@
+<% include common/tHeader.htm %>
+	<div class="container">
+		<% if(name.length == null) { %>
+				<p>该课程没有学生参加任何考试</p>
+				<!-- <a href="/test">前往考试</a> -->
+			<% }else{  %>
+				
+					<table class="table table-bordered">
+					  <tr>
+					  	<td></td>
+					  </tr>
+					  <tr>
+					  	<td>考生</td>
+					  	<td>科目</td>
+					  	<td>成绩</td>
+					  </tr>
+					   <% for(var j = 0; j < name.length; j++){ %>
+				  		<tr>
+				  			
+				  			<td><%= name[j] %></td>
+				  			
+				  			<td><%= course[j] %></td>
+
+				  			<td><%= result[j] %></td>
+				  		</tr>
+				  		<% } %>
+					  	
+					  
+					</table>
+
+			<% } %>
+	</div>
+	
+
+<% include common/footer.htm %>
